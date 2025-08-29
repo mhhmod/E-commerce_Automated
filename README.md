@@ -1,0 +1,2 @@
+# E-commerce_Automated
+GrindCTRL FULL AUTOMATED E-COMMERCE WEBSITE
