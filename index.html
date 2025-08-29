@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrindCTRL - Premium Streetwear Collection</title>
+    <meta name="description" content="Discover premium streetwear collections at GrindCTRL. Luxury t-shirts, hoodies, and accessories with fast worldwide shipping.">
+    <meta name="keywords" content="streetwear, premium fashion, luxury clothing, urban style, GrindCTRL">
+
+    <meta property="og:title" content="GrindCTRL - Premium Streetwear Collection">
+    <meta property="og:description" content="Discover premium streetwear collections at GrindCTRL. Luxury t-shirts, hoodies, and accessories.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=630">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "GrindCTRL",
+      "description": "Premium streetwear for the modern urban lifestyle",
+      "url": "https://grindctrl.com",
+      "logo": "https://grindctrl.com/logo.png",
+      "sameAs": [
+        "https://instagram.com/grindctrl",
+        "https://twitter.com/grindctrl"
+      ]
+    }
+</script>
+</head>
+<body>
+
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-animation">
+            <div class="spinner"></div>
+
+<script>
+
+(function(){
+  function kill(){ try { var el = document.getElementById('loadingScreen'); if(el){ el.classList.add('hidden'); } } catch(e){} }
+  window.addEventListener('load', kill, { once: true });
+  window.addEventListener('error', kill);
+  window.addEventListener('unhandledrejection', kill);
+  setTimeout(kill, 8000);
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(regs){
+      regs.forEach(function(r){ try{ r.unregister(); }catch(e){} });
+    });
+  }
+})();</script>
+
+            <h2>GrindCTRL</h2>
+            <p>Loading premium streetwear...</p>
+        </div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-fire"></i>
+                    <span>GrindCTRL</span>
+                </div>
+                <nav class="nav" id="site-menu">
+                    <a href="#home" class="nav-link" data-section="home">Home</a>
+                    <a href="#collection" class="nav-link" data-section="collection">Collection</a>
+                    <a href="#about" class="nav-link" data-section="about">About</a>
+                    <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link" onclick="return false;">
+                            Orders <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="#" onclick="app.openReturnModal(); return false;">Return Order</a>
+                            <a href="#" onclick="app.openExchangeModal(); return false;">Exchange Order</a>
+                        </div>
+                    </div>
+                    <div class="cart-icon" id="cartToggle">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <div class="wishlist-icon" id="wishlistToggle">
+                        <i class="fas fa-heart"></i>
+                        <span class="wishlist-count" id="wishlistCount">0</span>
+                    </div>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-controls="site-menu" aria-expanded="false" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <section class="hero" id="home">
+            <div class="hero-background"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            Elevate Your
+                            <span class="accent-text">Streetwear</span>
+                            Game
+                        </h1>
+                        <p class="hero-subtitle">
+                            Discover premium quality streetwear designed for the modern urban lifestyle.
+                            Minimal design, maximum impact.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="scrollToSection('collection')">
+                                Shop Collection
+                            </button>
+                            <button class="btn btn-secondary" onclick="openLookbook()">
+                                Watch Lookbook
+                            </button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number">10K+</span>
+                                <span class="stat-label">Happy Customers</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4.9</span>
+                                <span class="stat-label">Average Rating</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Countries</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+                             alt="Premium streetwear collection"
+                             loading="lazy">
+                        <div class="floating-card floating-card-1">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Free Worldwide Shipping</span>
+                        </div>
+                        <div class="floating-card floating-card-2">
+                            <i class="fas fa-award"></i>
+                            <span>Premium Quality</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="collection" id="collection">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Collection</h2>
+                    <p class="section-subtitle">
+                        Carefully curated pieces that define modern streetwear.
+                        Each item is crafted with premium materials and attention to detail.
+                    </p>
+                </div>
+
+                <div class="category-filter">
+                    <div class="filter-tabs" id="categoryTabs">
+
+                    </div>
+                </div>
+
+                <div class="products-grid" id="productsGrid">
+
+                </div>
+
+                <div class="load-more-container">
+                    <button class="btn btn-secondary" id="loadMoreBtn" style="display: none;">
+                        Load More Products
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Crafted for the Streets</h2>
+                        <p>
+                            At GrindCTRL, we believe streetwear is more than fashion—it's a lifestyle.
+                            Every piece is designed with purpose, crafted with premium materials,
+                            and built to last through your urban adventures.
+                        </p>
+                        <div class="features-grid">
+                            <div class="feature">
+                                <i class="fas fa-leaf"></i>
+                                <h3>Sustainable Materials</h3>
+                                <p>Eco-friendly fabrics and responsible production processes.</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <h3>Ethical Manufacturing</h3>
+                                <p>Fair trade practices and worker-friendly conditions.</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-crown"></i>
+                                <h3>Premium Quality</h3>
+                                <p>Only the finest materials and craftsmanship standards.</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-globe"></i>
+                                <h3>Global Community</h3>
+                                <p>Join thousands of style enthusiasts worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-fire"></i>
+                        <span>GrindCTRL</span>
+                    </div>
+                    <p>Premium streetwear for the modern urban lifestyle. Minimal design, maximum impact.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Care</h3>
+                    <ul>
+                        <li><a href="#" onclick="openSizeGuide()">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe for exclusive offers and updates</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Have a question or feedback? Send us a message.</p>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" name="name" placeholder="Your name" required>
+                        <input type="email" name="email" placeholder="Your email" required>
+                        <textarea name="message" placeholder="Your message" rows="3" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GrindCTRL. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-cart" id="floatingCart">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" id="cartClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+
+        </div>
+        <div class="cart-summary" id="cartSummary">
+
+        </div>
+    </div>
+
+    <div class="wishlist-panel" id="wishlistPanel">
+        <div class="wishlist-header">
+            <h3>Wishlist</h3>
+            <button class="wishlist-close" id="wishlistClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="wishlist-items" id="wishlistItems">
+
+        </div>
+    </div>
+
+    <div class="modal" id="quickViewModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quick View</h3>
+                <button class="modal-close" id="quickViewClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="quickViewBody">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="checkoutModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="modal-close" id="checkoutClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="checkout-progress">
+                <div class="progress-step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Shipping</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Payment</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Review</span>
+                </div>
+            </div>
+            <div class="modal-body" id="checkoutBody">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="sizeGuideModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Size Guide</h3>
+                <button class="modal-close" id="sizeGuideClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="sizeGuideBody">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-toast" id="notificationToast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+            <button class="toast-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content success-modal">
+            <div class="modal-body">
+                <div class="success-content">
+                    <i class="fas fa-check-circle success-icon"></i>
+                    <h3>Order Confirmed!</h3>
+                    <p id="successMessage">Thank you for your order. You will receive a confirmation email shortly.</p>
+                    <div class="order-details" id="orderDetails">
+
+                    </div>
+                    <button class="btn btn-primary" onclick="closeSuccessModal()">
+                        Continue Shopping
+                    </button>
+
+                    <div class="order-actions">
+                        <button class="btn btn-secondary" onclick="app.handleExchangeOrder()">
+                            Exchange Order
+                        </button>
+                        <button class="btn btn-secondary" onclick="app.handleReturnOrder()" style="margin-left: var(--spacing-sm);">
+                            Return Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="returnModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Return Order</h3>
+                <button class="modal-close" onclick="app.closeModal('return')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="returnForm" class="checkout-form">
+                    <div class="form-section">
+                        <h4>Return Request Details</h4>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="Your phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Shipping Address *</label>
+                            <input type="text" name="address" class="form-input" placeholder="Street address" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">City *</label>
+                                <input type="text" name="city" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Postal Code *</label>
+                                <input type="text" name="postalCode" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Reason for Return *</label>
+                            <textarea name="returnReason" class="form-input" rows="3" maxlength="500" placeholder="Please provide detailed reason for return" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Order ID (if known)</label>
+                            <input type="text" name="orderId" class="form-input" placeholder="Optional - leave blank if unknown">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Return Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="exchangeModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Exchange Order</h3>
+                <button class="modal-close" onclick="app.closeModal('exchange')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="exchangeForm" class="checkout-form">
+
+                    <div class="form-section">
+                        <h4>Step 1: Your Details</h4>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" name="phone" class="form-input" placeholder="Your phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Shipping Address *</label>
+                            <input type="text" name="address" class="form-input" placeholder="Street address" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">City *</label>
+                                <input type="text" name="city" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Postal Code *</label>
+                                <input type="text" name="postalCode" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="orderSelectionSection" style="display: none;">
+                        <h4>Step 2: Select Order to Exchange From</h4>
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Select which order contains the item you want to exchange</span>
+                        </div>
+                        <div id="exchangeOrderList" class="order-list"></div>
+                    </div>
+
+                    <div class="form-section" id="itemSelectionSection" style="display: none;">
+                        <h4>Step 3: Choose New Item</h4>
+                        <div class="info-box">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Choose the new item you'd like to exchange to</span>
+                        </div>
+
+                        <div id="exchangeProductGrid">
+
+                        </div>
+
+                        <div class="product-preview" id="exchangeProductPreview" style="display: none;">
+                            <h5>New Item Preview</h5>
+                            <div class="preview-images">
+                                <img id="exchangePreviewMainImage" src="" alt="" class="preview-main-image">
+                                <div class="preview-thumbnails" id="exchangePreviewThumbnails"></div>
+                            </div>
+                            <div class="preview-details" id="exchangePreviewDetails"></div>
+                        </div>
+
+                        <div class="exchange-summary" id="exchangeSummary" style="display: none;">
+                            <h5>Exchange Summary</h5>
+                            <div class="summary-content" id="summaryContent"></div>
+                        </div>
+
+                        <div class="price-delta" id="priceDelta" style="display: none;">
+                            <div class="delta-display">
+                                <span class="delta-label">Price Difference:</span>
+                                <span class="delta-amount" id="deltaAmount">EGP 0.00</span>
+                            </div>
+                            <div class="delta-explanation" id="deltaExplanation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Exchange Note</label>
+                            <textarea name="note" class="form-input" rows="3" maxlength="500" placeholder="Add any additional comments about your exchange request"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="exchangeSubmit" class="btn btn-primary" style="display: none;">Submit Exchange Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="config.js"></script>
+
+    <script src="main.js?v=2025-08-24d&v=v10_1756338298" defer></script>
+</body>
+</html>

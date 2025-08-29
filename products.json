@@ -1,0 +1,101 @@
+{
+  "products": [
+    {
+      "id": "luxury-cropped-black-tee",
+      "name": "Luxury Cropped Black T-Shirt",
+      "description": "Premium cotton blend with perfect fit. Minimalist design meets maximum impact.",
+      "price": 300.00,
+      "originalPrice": 350.00,
+      "category": "tshirts",
+      "featured": true,
+      "images": [
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      ],
+      "colors": [
+        { "name": "Black", "value": "#000000" },
+        { "name": "White", "value": "#FFFFFF" },
+        { "name": "Gray", "value": "#6B7280" }
+      ],
+      "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+      "inStock": true,
+      "rating": 4.9,
+      "reviewCount": 127,
+      "tags": ["HOT", "BESTSELLER"]
+    },
+    {
+      "id": "oversized-essential-hoodie",
+      "name": "Oversized Essential Hoodie",
+      "description": "Comfort meets style in premium fleece. Perfect for layering or standalone wear.",
+      "price": 650.00,
+      "originalPrice": null,
+      "category": "hoodies",
+      "featured": true,
+      "images": [
+        "https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800",
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      ],
+      "colors": [
+        { "name": "Charcoal", "value": "#374151" },
+        { "name": "Black", "value": "#000000" },
+        { "name": "Navy", "value": "#1E3A8A" }
+      ],
+      "sizes": ["S", "M", "L", "XL", "XXL"],
+      "inStock": true,
+      "rating": 4.7,
+      "reviewCount": 89,
+      "tags": ["NEW"]
+    },
+    {
+      "id": "minimal-logo-cap",
+      "name": "Minimal Logo Cap",
+      "description": "Classic adjustable cap with embroidered logo. Completes any streetwear look.",
+      "price": 250.00,
+      "originalPrice": null,
+      "category": "accessories",
+      "featured": true,
+      "images": [
+        "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      ],
+      "colors": [
+        { "name": "Black", "value": "#000000" },
+        { "name": "White", "value": "#FFFFFF" },
+        { "name": "Red", "value": "#DC2626" }
+      ],
+      "sizes": ["One Size"],
+      "inStock": true,
+      "rating": 5.0,
+      "reviewCount": 45,
+      "tags": ["LIMITED"]
+    },
+    {
+      "id": "premium-leather-sneakers",
+      "name": "Premium Leather Sneakers",
+      "description": "Handcrafted Italian leather with modern silhouette. Elevated streetwear essential.",
+      "price": 1200.00,
+      "originalPrice": null,
+      "category": "footwear",
+      "featured": true,
+      "images": [
+        "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+      ],
+      "colors": [
+        { "name": "White", "value": "#FFFFFF" },
+        { "name": "Black", "value": "#000000" },
+        { "name": "Cream", "value": "#F7FAFC" }
+      ],
+      "sizes": ["40", "41", "42", "43", "44", "45"],
+      "inStock": true,
+      "rating": 4.8,
+      "reviewCount": 156,
+      "tags": ["PREMIUM"]
+    }
+  ],
+  "categories": [
+    { "id": "all", "name": "All Products", "filter": null },
+    { "id": "tshirts", "name": "T-Shirts", "filter": "tshirts" },
+    { "id": "hoodies", "name": "Hoodies", "filter": "hoodies" },
+    { "id": "bottoms", "name": "Bottoms", "filter": "bottoms" },
+    { "id": "accessories", "name": "Accessories", "filter": "accessories" },
+    { "id": "footwear", "name": "Footwear", "filter": "footwear" }
+  ]
+}
