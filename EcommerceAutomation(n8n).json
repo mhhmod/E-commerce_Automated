@@ -863,87 +863,7 @@
       }
     }
   ],
-  "pinData": {
-    "ExchangOrder": [
-      {
-        "json": {
-          "headers": {
-            "host": "grindctrlface.app.n8n.cloud",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
-            "content-length": "1389",
-            "accept": "*/*",
-            "accept-encoding": "gzip, br",
-            "accept-language": "en-GB,en;q=0.9,ar-EG;q=0.8,ar;q=0.7,es-ES;q=0.6,es;q=0.5,en-US;q=0.4",
-            "cdn-loop": "cloudflare; loops=1; subreqs=1",
-            "cf-connecting-ip": "41.69.48.152",
-            "cf-ew-via": "15",
-            "cf-ipcountry": "EG",
-            "cf-ray": "97663c4ad72d7e68-PMO",
-            "cf-visitor": "{\"scheme\":\"https\"}",
-            "cf-worker": "n8n.cloud",
-            "content-type": "application/json",
-            "dnt": "1",
-            "origin": "https://mhhmod.github.io",
-            "priority": "u=1, i",
-            "referer": "https://mhhmod.github.io/",
-            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "cross-site",
-            "x-forwarded-for": "41.69.48.152, 172.69.211.178",
-            "x-forwarded-host": "grindctrlface.app.n8n.cloud",
-            "x-forwarded-port": "443",
-            "x-forwarded-proto": "https",
-            "x-forwarded-server": "traefik-prod-users-gwc-88-6587794787-rr7pt",
-            "x-is-trusted": "yes",
-            "x-real-ip": "41.69.48.152"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "Order ID": "GC-MEVSWE2J-46JR3T",
-            "Customer Name": "Mahmoud Sabry",
-            "Customer Email": "m10sabry1505@gmail.com",
-            "Phone": "01002318117",
-            "City": "الهرم",
-            "Address": "عمارة ٣ب شارع موريس الضبع شارع زغلول الهرم جيزة الدور الخامس شقه ١٤",
-            "Note": "Exchange Request | Original Order: GC-MET7B8OY-RLTC64 | Original Product: Minimal Logo Cap - One Size (4x) | Original Price: 1000.00 EGP | New Product: Luxury Cropped Black T-Shirt | New Price: 300.00 EGP | Price Difference: -700.00 EGP | Action Required: Customer will receive 700.00 EGP refund | Refund will be processed after exchange completion | Customer Note: ",
-            "COD Amount": "0.00",
-            "Tracking Number": "",
-            "Courier": "",
-            "Total": "300.00",
-            "Date": "2025-08-28T19:32:34.747Z",
-            "Status": "Exchange",
-            "Payment Method": "Exchange Refund",
-            "Product": "Luxury Cropped Black T-Shirt (Exchange)",
-            "Quantity": "1",
-            "requestType": "exchange",
-            "exchangeDetails": {
-              "originalOrderId": "GC-MET7B8OY-RLTC64",
-              "originalProduct": "Minimal Logo Cap - One Size (4x)",
-              "originalPrice": 1000,
-              "originalPaymentMethod": "Cash on Delivery",
-              "newProduct": {
-                "id": "luxury-cropped-black-tee",
-                "name": "Luxury Cropped Black T-Shirt",
-                "sku": "n/a",
-                "price": 300
-              },
-              "priceDifference": -700,
-              "exchangeAction": "Customer will receive 700.00 EGP refund | Refund will be processed after exchange completion",
-              "paymentRequired": 0,
-              "refundAmount": 700,
-              "customerNote": ""
-            }
-          },
-          "webhookUrl": "https://grindctrlface.app.n8n.cloud/webhook/exxx",
-          "executionMode": "production"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "connections": {
     "Code": {
       "main": [
@@ -1049,7 +969,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "ef89dc43-cf37-4dfc-b2b2-86bd1f5f0763",
+  "versionId": "1910576a-7e2f-4081-aa28-d97fadcf75b4",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "7346284f103f05807650ed2927ed8c8e0b3ce23600a304ce9a4aeda145fd622f"
