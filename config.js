@@ -2,11 +2,11 @@
 
 window.CONFIG = {
 
-    WEBHOOK_URL: 'https://grindctrlface.app.n8n.cloud/webhook/test2git',
+    WEBHOOK_URL: 'NEWORDER_URL',
 
-    RETURN_WEBHOOK_URL: 'https://grindctrlface.app.n8n.cloud/webhook/returnxx',
+    RETURN_WEBHOOK_URL: 'RETURN_URL',
 
-    EXCHANGE_WEBHOOK_URL: 'https://grindctrlface.app.n8n.cloud/webhook/exxx',
+    EXCHANGE_WEBHOOK_URL: 'EXCHANGE_URL',
 
     API_ENDPOINTS: {
       NEWSLETTER: '/api/newsletter',
