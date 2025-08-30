@@ -1,0 +1,1059 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst updatedItems = items.map((item) => {\n  if (item.json.body[\"COD Amount\"] > 5000) {\n    item.json.body[\"high-port\"] = true;\n  }\n  return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        -2512
+      ],
+      "id": "4c717e9e-8179-48c4-be03-1604738c7d13",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test2git",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -2112,
+        -2512
+      ],
+      "id": "96eb3f4c-30bc-45b0-a383-42e3ce50a88b",
+      "name": "NewOrder",
+      "webhookId": "bb598178-224e-4526-bfa4-91c3483677ab"
+    },
+    {
+      "parameters": {
+        "content": "## Order Handler",
+        "height": 240,
+        "width": 1664
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2560,
+        -2592
+      ],
+      "typeVersion": 1,
+      "id": "59ad11ff-3cd2-4b6a-80ba-f00407fb6f5f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst updatedItems = items.map((item) => {\n  if (item.json.body[\"COD Amount\"] > 5000) {\n    item.json.body[\"high-port\"] = true;\n  }\n  return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        -2288
+      ],
+      "id": "2f005e24-3900-4e82-9f5a-9148469f400f",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "content": "## Return Handler",
+        "height": 240,
+        "width": 1664,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2560,
+        -2368
+      ],
+      "typeVersion": 1,
+      "id": "e0580cac-1901-414e-bd11-4f275e6a771b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Exchange Handler",
+        "height": 240,
+        "width": 1664,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2560,
+        -2144
+      ],
+      "typeVersion": 1,
+      "id": "50759606-e2a6-4b5f-b2aa-0513db18635d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nconst updatedItems = items.map((item) => {\n  if (item.json.body[\"COD Amount\"] > 5000) {\n    item.json.body[\"high-port\"] = true;\n  }\n  return item;\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        -2064
+      ],
+      "id": "9a1ea4d2-1db7-4d00-bc84-6976470f1b9e",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "exxx",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -2112,
+        -2064
+      ],
+      "id": "11385060-d051-4d0e-86a2-c20585939c4d",
+      "name": "ExchangOrder",
+      "webhookId": "bb598178-224e-4526-bfa4-91c3483677ab"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "returnxx",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -2112,
+        -2288
+      ],
+      "id": "704a5a34-b28a-4a19-96d2-50b2bae05032",
+      "name": "ReturnOrder",
+      "webhookId": "bb598178-224e-4526-bfa4-91c3483677ab"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1HMZwkzpfGjDtgciqlJ-eAxZMDepZ7-AYCUV_91rJjfU/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order Type": "={{ $json.body.requestType }}",
+            "Order ID": "={{ $json.body['Order ID'] }}",
+            "Customer Name": "={{ $json.body['Customer Name'] }}",
+            "Phone": "={{ $json.body.Phone }}",
+            "City": "={{ $json.body.City }}",
+            "Address": "={{ $json.body.Address }}",
+            "COD Amount": "={{ $json.body['COD Amount'] }}",
+            "Tracking Number": "={{ $json.body['Tracking Number'] }}",
+            "Courier": "={{ $json.body.Courier }}",
+            "Total": "={{ $json.body.Total }}",
+            "Date": "={{ $json.body.Date }}",
+            "Status": "={{ $json.body.Status }}",
+            "Payment Method": "={{ $json.body['Payment Method'] }}",
+            "Product": "={{ $json.body.Product }}",
+            "Quantity": "={{ $json.body.Quantity }}",
+            "Note": "={{ $json.body.Note }}",
+            "Email": "={{ $json.body['Customer Email'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "COD Amount",
+              "displayName": "COD Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tracking Number",
+              "displayName": "Tracking Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Courier",
+              "displayName": "Courier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Method",
+              "displayName": "Payment Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Product",
+              "displayName": "Product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1664,
+        -2288
+      ],
+      "id": "6cb1d9b4-c45d-455b-bb57-293e5dbff062",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aO5rriYTcaOobtAb",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1HMZwkzpfGjDtgciqlJ-eAxZMDepZ7-AYCUV_91rJjfU/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Sheet1",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order Type": "={{ $json.body.requestType }}",
+            "Order ID": "={{ $json.body['Order ID'] }}",
+            "Customer Name": "={{ $json.body['Customer Name'] }}",
+            "Phone": "={{ $json.body.Phone }}",
+            "City": "={{ $json.body.City }}",
+            "Address": "={{ $json.body.Address }}",
+            "COD Amount": "={{ $json.body['COD Amount'] }}",
+            "Tracking Number": "={{ $json.body['Tracking Number'] }}",
+            "Courier": "={{ $json.body.Courier }}",
+            "Total": "={{ $json.body.Total }}",
+            "Date": "={{ $json.body.Date }}",
+            "Status": "={{ $json.body.Status }}",
+            "Payment Method": "={{ $json.body['Payment Method'] }}",
+            "Product": "={{ $json.body.Product }}",
+            "Quantity": "={{ $json.body.Quantity }}",
+            "Note": "={{ $json.body.Note }}",
+            "Email": "={{ $json.body['Customer Email'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "COD Amount",
+              "displayName": "COD Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tracking Number",
+              "displayName": "Tracking Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Courier",
+              "displayName": "Courier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Method",
+              "displayName": "Payment Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Product",
+              "displayName": "Product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1664,
+        -2064
+      ],
+      "id": "64d28ca9-24b6-458c-8f6d-394a80c38fab",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aO5rriYTcaOobtAb",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "grindctrlnow@gmail.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "GrindCTRL New Order 😎",
+        "html": "=<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width\">\n  <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n  <title>Order confirmed 🎉</title>\n  <style>\n    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }\n    a { text-decoration:none; }\n    @media screen and (max-width:600px){\n      .container { width:100% !important; padding:16px !important; }\n      .stack { display:block !important; width:100% !important; }\n    }\n  </style>\n</head>\n<body style=\"margin:0;padding:0;background:#0A0A0A;\">\n  <div style=\"display:none;max-height:0;overflow:hidden;mso-hide:all;\">\n    Order confirmed: {{$json[\"Order ID\"]}}\n  </div>\n\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0A0A0A;\">\n    <tr>\n      <td align=\"center\" style=\"padding:24px;\">\n        <table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" class=\"container\" style=\"width:600px;background:#1A1A1A;border-radius:14px;overflow:hidden;border:1px solid #404040;\">\n          <!-- Brand -->\n          <tr>\n            <td style=\"background:#0A0A0A;padding:18px 24px;border-bottom:1px solid #404040;\">\n              <span style=\"font:700 18px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;letter-spacing:0.3px;\">\n                <span style=\"color:#E74C3C;\">GrindCTRL</span>\n              </span>\n            </td>\n          </tr>\n\n          <!-- Hero -->\n          <tr>\n            <td style=\"padding:24px 24px 8px 24px;\">\n              <div style=\"font:800 24px/1.3 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                Thank you, {{ (($json[\"Customer Name\"]||\"\").split(\" \")[0] || \"friend\") }}! 🎉\n              </div>\n              <div style=\"margin-top:6px;font:500 14px/1.7 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#B0B0B0;\">\n                Your order is locked in. We’re prepping it now. Here are the details 👇\n              </div>\n            </td>\n          </tr>\n\n          <!-- CTA -->\n          <tr>\n            <td style=\"padding:8px 24px 20px 24px;\">\n              <a href=\"https://mhhmod.github.io/tes3-main/\"\n                 style=\"display:inline-block;background:#E74C3C;color:#FFFFFF;padding:12px 18px;border-radius:10px;font:700 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;border:1px solid #C0392B;\">\n                Open GrindCTRL\n              </a>\n              <span style=\"display:inline-block;margin-left:10px;font:500 12px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#B0B0B0;\">\n                {{ (function(){var t=$json[\"Tracking Number\"]||\"\"; return t?(\"Tracking: \"+t):\"Tracking will be shared soon\";})() }}\n              </span>\n            </td>\n          </tr>\n\n          <!-- Order summary -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2A2A2A;border:1px solid #404040;border-radius:12px;\">\n                <tr>\n                  <td style=\"padding:14px 16px;border-bottom:1px solid #404040;font:700 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                    Order summary 📋\n                  </td>\n                </tr>\n                <tr>\n                  <td style=\"padding:8px 16px 12px 16px;\">\n                    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font:400 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                      <tr>\n                        <td class=\"stack\" style=\"padding:10px 0;width:42%;color:#B0B0B0;\">Order ID</td>\n                        <td class=\"stack\" style=\"padding:10px 0;\">{{$json[\"Order ID\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Status</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Status\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Payment</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Payment Method\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Total</td>\n                        <td style=\"padding:10px 0;font-weight:700;color:#FFFFFF;\">\n                          {{ ($json[\"Total\"]||\"0\") + \" EGP\" }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Product(s)</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"Product\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Quantity</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Quantity\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Courier</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var v=$json[\"Courier\"]||\"\"; return v?v:\"-\";})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Tracking Number</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var v=$json[\"Tracking Number\"]||\"\"; return v?v:\"-\";})() }}\n                        </td>\n                      </tr>\n                    </table>\n                  </td>\n                </tr>\n              </table>\n            </td>\n          </tr>\n\n          <!-- Customer -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2A2A2A;border:1px solid #404040;border-radius:12px;\">\n                <tr>\n                  <td style=\"padding:14px 16px;border-bottom:1px solid #404040;font:700 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                    Customer 👤\n                  </td>\n                </tr>\n                <tr>\n                  <td style=\"padding:8px 16px 12px 16px;\">\n                    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font:400 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Name</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Customer Name\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Phone</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Phone\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Email</td>\n                        <td style=\"padding:10px 0;\"><a href=\"mailto:{{$json[\"Email\"]}}\" style=\"color:#FF6B6B;\">{{$json[\"Email\"]}}</a></td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">City</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"City\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Address</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"Address\"]}}</td>\n                      </tr>\n                    </table>\n                  </td>\n                </tr>\n              </table>\n            </td>\n          </tr>\n\n          <!-- Footer -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <div style=\"height:1px;background:#404040;\"></div>\n              <div style=\"padding-top:12px;font:500 12px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#B0B0B0;text-align:center;\">\n                We appreciate you. If anything’s off, reply to this email and we’ll fix it fast.\n              </div>\n              <div style=\"padding-top:6px;font:400 11px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#666666;text-align:center;\">\n                © GrindCTRL\n              </div>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -1440,
+        -2512
+      ],
+      "id": "2c6752ff-a957-4e1b-a267-2998689152e3",
+      "name": "New Email",
+      "webhookId": "5461712e-c701-4cd8-ac35-abc2339e1535",
+      "credentials": {
+        "smtp": {
+          "id": "9KnwIOlsIK60gckq",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "grindctrlnow@gmail.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "GrindCTRL Return Request ",
+        "html": "=<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width\">\n  <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n  <title>Return order details 🔄</title>\n  <style>\n    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }\n    a { text-decoration:none; }\n    @media screen and (max-width:600px){\n      .container { width:100% !important; padding:16px !important; }\n      .stack { display:block !important; width:100% !important; }\n    }\n  </style>\n</head>\n<body style=\"margin:0;padding:0;background:#0A0A0A;\">\n  <div style=\"display:none;max-height:0;overflow:hidden;mso-hide:all;\">\n    Return order details for {{$json[\"Order ID\"]}}\n  </div>\n\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0A0A0A;\">\n    <tr>\n      <td align=\"center\" style=\"padding:24px;\">\n        <table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" class=\"container\" style=\"width:600px;background:#1A1A1A;border-radius:14px;overflow:hidden;border:1px solid #404040;\">\n          <!-- Brand -->\n          <tr>\n            <td style=\"background:#0A0A0A;padding:18px 24px;border-bottom:1px solid #404040;\">\n              <span style=\"font:700 18px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;letter-spacing:0.3px;\">\n                <span style=\"color:#E74C3C;\">GrindCTRL</span>\n              </span>\n            </td>\n          </tr>\n\n          <!-- Header -->\n          <tr>\n            <td style=\"padding:22px 24px 12px 24px;\">\n              <div style=\"font:700 22px/1.3 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                Return order details 🔄\n              </div>\n              <div style=\"margin-top:6px;font:500 14px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#B0B0B0;\">\n                Hi {{$json[\"Customer Name\"].split(' ')[0]}} 👋, here are your request details.\n              </div>\n            </td>\n          </tr>\n\n          <!-- Summary -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2A2A2A;border:1px solid #404040;border-radius:12px;\">\n                <tr>\n                  <td style=\"padding:14px 16px;border-bottom:1px solid #404040;font:600 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                    Summary 📋\n                  </td>\n                </tr>\n                <tr>\n                  <td style=\"padding:8px 16px 12px 16px;\">\n                    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font:400 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                      <tr>\n                        <td class=\"stack\" style=\"padding:10px 0;width:42%;color:#B0B0B0;\">Order ID</td>\n                        <td class=\"stack\" style=\"padding:10px 0;\">{{$json[\"Order ID\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Order Type</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Order Type\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Product</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Product\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Quantity</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Quantity\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Note</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"Note\"] ? $json[\"Note\"] : \"-\"}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Name</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Customer Name\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Phone</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Phone\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Email</td>\n                        <td style=\"padding:10px 0;\"><a href=\"mailto:{{$json[\"Email\"]}}\" style=\"color:#FF6B6B;\">{{$json[\"Email\"]}}</a></td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">City</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"City\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Address</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"Address\"]}}</td>\n                      </tr\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -1440,
+        -2288
+      ],
+      "id": "89c2edad-76d1-48b5-875e-81995dfe369d",
+      "name": "Return email",
+      "webhookId": "5461712e-c701-4cd8-ac35-abc2339e1535",
+      "credentials": {
+        "smtp": {
+          "id": "9KnwIOlsIK60gckq",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "grindctrlnow@gmail.com",
+        "toEmail": "={{ $json.Email }}",
+        "subject": "GrindCTRL Exchange Request ",
+        "html": "=<!doctype html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width\">\n  <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n  <title>Exchange order details 🔄</title>\n  <style>\n    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }\n    a { text-decoration:none; }\n    @media screen and (max-width:600px){\n      .container { width:100% !important; padding:16px !important; }\n      .stack { display:block !important; width:100% !important; }\n    }\n  </style>\n</head>\n<body style=\"margin:0;padding:0;background:#0A0A0A;\">\n  <div style=\"display:none;max-height:0;overflow:hidden;mso-hide:all;\">\n    Exchange order details for {{$json[\"Order ID\"]}}\n  </div>\n\n  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#0A0A0A;\">\n    <tr>\n      <td align=\"center\" style=\"padding:24px;\">\n        <table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" class=\"container\" style=\"width:600px;background:#1A1A1A;border-radius:14px;overflow:hidden;border:1px solid #404040;\">\n          <!-- Brand -->\n          <tr>\n            <td style=\"background:#0A0A0A;padding:18px 24px;border-bottom:1px solid #404040;\">\n              <span style=\"font:700 18px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;letter-spacing:0.3px;\">\n                <span style=\"color:#E74C3C;\">GrindCTRL</span>\n              </span>\n            </td>\n          </tr>\n\n          <!-- Header -->\n          <tr>\n            <td style=\"padding:22px 24px 12px 24px;\">\n              <div style=\"font:700 22px/1.3 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                Exchange order details 🔄\n              </div>\n              <div style=\"margin-top:6px;font:500 14px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#B0B0B0;\">\n                Hi {{ (($json[\"Customer Name\"]||\"\").split(\" \")[0] || \"there\") }} 👋, here are your request details.\n              </div>\n            </td>\n          </tr>\n\n          <!-- Summary -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2A2A2A;border:1px solid #404040;border-radius:12px;\">\n                <tr>\n                  <td style=\"padding:14px 16px;border-bottom:1px solid #404040;font:600 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                    Summary 📋\n                  </td>\n                </tr>\n                <tr>\n                  <td style=\"padding:8px 16px 12px 16px;\">\n                    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font:400 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                      <tr>\n                        <td class=\"stack\" style=\"padding:10px 0;width:42%;color:#B0B0B0;\">Order ID</td>\n                        <td class=\"stack\" style=\"padding:10px 0;\">{{$json[\"Order ID\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Order Type</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Order Type\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Product</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Product\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Quantity</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Quantity\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Name</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Customer Name\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Phone</td>\n                        <td style=\"padding:10px 0;\">{{$json[\"Phone\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Email</td>\n                        <td style=\"padding:10px 0;\"><a href=\"mailto:{{$json[\"Email\"]}}\" style=\"color:#FF6B6B;\">{{$json[\"Email\"]}}</a></td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">City</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"City\"]}}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Address</td>\n                        <td style=\"padding:10px 0;\" dir=\"auto\">{{$json[\"Address\"]}}</td>\n                      </tr>\n                    </table>\n                  </td>\n                </tr>\n              </table>\n            </td>\n          </tr>\n\n          <!-- Exchange details -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#2A2A2A;border:1px solid #404040;border-radius:12px;\">\n                <tr>\n                  <td style=\"padding:14px 16px;border-bottom:1px solid #404040;font:600 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                    Exchange details 🔁\n                  </td>\n                </tr>\n                <tr>\n                  <td style=\"padding:8px 16px 12px 16px;\">\n                    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"font:400 13px ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#FFFFFF;\">\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Original Order</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/Original Order:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Original Product</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/Original Product:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Original Price</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/Original Price:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">New Product</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/New Product:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">New Price</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/New Price:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                      <tr>\n                        <td style=\"padding:10px 0;color:#B0B0B0;\">Price Difference</td>\n                        <td style=\"padding:10px 0;\">\n                          {{ (function(){var n=$json[\"Note\"]||\"\";var m=n.match(/Price Difference:\\s*([^|]+)/);return (m&&m[1]?m[1].trim():\"-\");})() }}\n                        </td>\n                      </tr>\n                    <tr>\n  <td class=\"stack\" style=\"padding:10px 0;width:42%;color:#B0B0B0;\">Action Required</td>\n  <td class=\"stack\" style=\"padding:10px 0;\">\n    {{ (function(){\n         var n=$json[\"Note\"]||\"\";\n         var m1=n.match(/Customer will receive\\s*([0-9]+(?:\\.[0-9]{1,2})?)\\s*EGP\\s*refund/i);\n         var amt=m1?m1[1]:null;\n         if(!amt){\n           var m2=n.match(/Price Difference:\\s*-\\s*([0-9]+(?:\\.[0-9]{1,2})?)\\s*EGP/i);\n           if(m2) amt=m2[1];\n         }\n         return amt ? (\" \" + Number(amt).toFixed(2) + \" EGP refund\") : \"-\";\n       })() }}\n  </td>\n</tr>\n\n                    </table>\n                  </td>\n                </tr>\n              </table>\n            </td>\n          </tr>\n\n          <!-- Footer -->\n          <tr>\n            <td style=\"padding:0 24px 24px 24px;\">\n              <div style=\"height:1px;background:#404040;\"></div>\n              <div style=\"padding-top:12px;font:400 11px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:#666666;text-align:center;\">\n                © GrindCTRL\n              </div>\n            </td>\n          </tr>\n        </table>\n      </td>\n    </tr>\n  </table>\n</body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -1440,
+        -2064
+      ],
+      "id": "0c41fc26-3282-4264-84c8-12a2463fe2ac",
+      "name": "Exchange email",
+      "webhookId": "5461712e-c701-4cd8-ac35-abc2339e1535",
+      "credentials": {
+        "smtp": {
+          "id": "9KnwIOlsIK60gckq",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1HMZwkzpfGjDtgciqlJ-eAxZMDepZ7-AYCUV_91rJjfU",
+          "mode": "list",
+          "cachedResultName": "GrindCTRL_ORDERS",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HMZwkzpfGjDtgciqlJ-eAxZMDepZ7-AYCUV_91rJjfU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1HMZwkzpfGjDtgciqlJ-eAxZMDepZ7-AYCUV_91rJjfU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Order Type": "NEW ORDER 🤑",
+            "Order ID": "={{ $json.body['Order ID'] }}",
+            "Customer Name": "={{ $json.body['Customer Name'] }}",
+            "Phone": "={{ $json.body.Phone }}",
+            "Email": "={{ $json.body['Customer Email'] }}",
+            "City": "={{ $json.body.City }}",
+            "Address": "={{ $json.body.Address }}",
+            "COD Amount": "={{ $json.body['COD Amount'] }}",
+            "Tracking Number": "={{ $json.body['Tracking Number'] }}",
+            "Courier": "={{ $json.body.Courier }}",
+            "Total": "={{ $json.body.Total }}",
+            "Date": "={{ $json.body.Date }}",
+            "Status": "={{ $json.body.Status }}",
+            "Payment Method": "={{ $json.body['Payment Method'] }}",
+            "Product": "={{ $json.body.Product }}",
+            "Quantity": "={{ $json.body.Quantity }}",
+            "Note": "={{ $json.body.Note }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Order Type",
+              "displayName": "Order Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Order ID",
+              "displayName": "Order ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Address",
+              "displayName": "Address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "COD Amount",
+              "displayName": "COD Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Total",
+              "displayName": "Total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Note",
+              "displayName": "Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tracking Number",
+              "displayName": "Tracking Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Courier",
+              "displayName": "Courier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Payment Method",
+              "displayName": "Payment Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Product",
+              "displayName": "Product",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Quantity",
+              "displayName": "Quantity",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1664,
+        -2512
+      ],
+      "id": "0f742bcf-1510-4e9a-b449-212b01492c42",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "aO5rriYTcaOobtAb",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "ExchangOrder": [
+      {
+        "json": {
+          "headers": {
+            "host": "grindctrlface.app.n8n.cloud",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36",
+            "content-length": "1389",
+            "accept": "*/*",
+            "accept-encoding": "gzip, br",
+            "accept-language": "en-GB,en;q=0.9,ar-EG;q=0.8,ar;q=0.7,es-ES;q=0.6,es;q=0.5,en-US;q=0.4",
+            "cdn-loop": "cloudflare; loops=1; subreqs=1",
+            "cf-connecting-ip": "41.69.48.152",
+            "cf-ew-via": "15",
+            "cf-ipcountry": "EG",
+            "cf-ray": "97663c4ad72d7e68-PMO",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-worker": "n8n.cloud",
+            "content-type": "application/json",
+            "dnt": "1",
+            "origin": "https://mhhmod.github.io",
+            "priority": "u=1, i",
+            "referer": "https://mhhmod.github.io/",
+            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Google Chrome\";v=\"139\", \"Chromium\";v=\"139\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "x-forwarded-for": "41.69.48.152, 172.69.211.178",
+            "x-forwarded-host": "grindctrlface.app.n8n.cloud",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "traefik-prod-users-gwc-88-6587794787-rr7pt",
+            "x-is-trusted": "yes",
+            "x-real-ip": "41.69.48.152"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "Order ID": "GC-MEVSWE2J-46JR3T",
+            "Customer Name": "Mahmoud Sabry",
+            "Customer Email": "m10sabry1505@gmail.com",
+            "Phone": "01002318117",
+            "City": "الهرم",
+            "Address": "عمارة ٣ب شارع موريس الضبع شارع زغلول الهرم جيزة الدور الخامس شقه ١٤",
+            "Note": "Exchange Request | Original Order: GC-MET7B8OY-RLTC64 | Original Product: Minimal Logo Cap - One Size (4x) | Original Price: 1000.00 EGP | New Product: Luxury Cropped Black T-Shirt | New Price: 300.00 EGP | Price Difference: -700.00 EGP | Action Required: Customer will receive 700.00 EGP refund | Refund will be processed after exchange completion | Customer Note: ",
+            "COD Amount": "0.00",
+            "Tracking Number": "",
+            "Courier": "",
+            "Total": "300.00",
+            "Date": "2025-08-28T19:32:34.747Z",
+            "Status": "Exchange",
+            "Payment Method": "Exchange Refund",
+            "Product": "Luxury Cropped Black T-Shirt (Exchange)",
+            "Quantity": "1",
+            "requestType": "exchange",
+            "exchangeDetails": {
+              "originalOrderId": "GC-MET7B8OY-RLTC64",
+              "originalProduct": "Minimal Logo Cap - One Size (4x)",
+              "originalPrice": 1000,
+              "originalPaymentMethod": "Cash on Delivery",
+              "newProduct": {
+                "id": "luxury-cropped-black-tee",
+                "name": "Luxury Cropped Black T-Shirt",
+                "sku": "n/a",
+                "price": 300
+              },
+              "priceDifference": -700,
+              "exchangeAction": "Customer will receive 700.00 EGP refund | Refund will be processed after exchange completion",
+              "paymentRequired": 0,
+              "refundAmount": 700,
+              "customerNote": ""
+            }
+          },
+          "webhookUrl": "https://grindctrlface.app.n8n.cloud/webhook/exxx",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NewOrder": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ExchangOrder": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ReturnOrder": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Return email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Exchange email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "New Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ef89dc43-cf37-4dfc-b2b2-86bd1f5f0763",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7346284f103f05807650ed2927ed8c8e0b3ce23600a304ce9a4aeda145fd622f"
+  },
+  "id": "HTGaJ4YKyW4Dn1bK",
+  "tags": []
+}
