@@ -2959,3 +2959,31 @@ document.addEventListener('keydown', function(e){
     try { window.app && app.closeAllModals && app.closeAllModals(); } catch(_){}
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    if (menuToggle && nav) {
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+    }
+});
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const mobileMenuToggle = document.querySelector(".mobile-menu-toggle");
+    const nav = document.querySelector(".nav");
+
+    if (mobileMenuToggle && nav) {
+        mobileMenuToggle.addEventListener("click", function() {
+            nav.classList.toggle("open");
+        });
+    }
+});
+
+
