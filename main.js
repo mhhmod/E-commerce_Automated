@@ -101,11 +101,7 @@ class AppState {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
 
-    toggleWishlist(productId) {
-        const index = this.wishlist.indexOf(productId);
-        if (index >= 0) {
-            this.wishlist.splice(index, 1);
-        } else {
+    else {
             this.wishlist.push(productId);
         }
         this.saveToStorage('grindctrl_wishlist', this.wishlist);
@@ -601,6 +597,11 @@ class GrindCTRLApp {
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
             cartToggle.addEventListener('click', () => this.toggleCart());
+
+        const overlay = document.getElementById('drawerOverlay');
+        if (overlay) {
+            overlay.addEventListener('click', () => { this.toggleCart(false); this.toggleWishlist(false); });
+        }
         }
 
         const wishlistToggle = document.getElementById('wishlistToggle');
@@ -1844,17 +1845,45 @@ class GrindCTRLApp {
         const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
             modal.classList.remove('open');
-        });
-        document.body.style.overflow = '';
+        }
+
+    updateDrawerOverlay() {
+        const overlay = document.getElementById('drawerOverlay');
+        const cart = document.getElementById('floatingCart');
+        const wishlist = document.getElementById('wishlistPanel');
+        const anyOpen = (cart && cart.classList.contains('open')) || (wishlist && wishlist.classList.contains('open'));
+        document.body.classList.toggle('drawer-open', !!anyOpen);
+        if (overlay) overlay.setAttribute('aria-hidden', anyOpen ? 'false' : 'true');
     }
 
     toggleCart(force = null) {
         const cart = document.getElementById('floatingCart');
+        const wishlist = document.getElementById('wishlistPanel');
         if (!cart) return;
 
-        if (force !== null) {
-            cart.classList.toggle('open', force);
-        } else {
+        const shouldOpen = force !== null ? !!force : !cart.classList.contains('open');
+        cart.classList.toggle('open', shouldOpen);
+        if (shouldOpen && wishlist) wishlist.classList.remove('open');
+
+        this.updateDrawerOverlay();
+    }
+
+    toggleWishlist(force = null) {
+        const wishlist = document.getElementById('wishlistPanel');
+        const cart = document.getElementById('floatingCart');
+        if (!wishlist) return;
+
+        const shouldOpen = force !== null ? !!force : !wishlist.classList.contains('open');
+        wishlist.classList.toggle('open', shouldOpen);
+        if (shouldOpen && cart) cart.classList.remove('open');
+
+        this.updateDrawerOverlay();
+    }
+);
+        document.body.style.overflow = '';
+    }
+
+    else {
             cart.classList.toggle('open');
         }
 
