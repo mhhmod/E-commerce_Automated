@@ -99,11 +99,20 @@ class AppState {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
 
-    toggleWishlist(productId) {
-        const index = this.wishlist.indexOf(productId);
-        if (index >= 0) {
-            this.wishlist.splice(index, 1);
-        } else {
+    toggleWishlist(open = null) {
+  const wishlist = document.getElementById('wishlistPanel');
+  const overlay = document.getElementById('drawerOverlay');
+  if (!wishlist) return;
+
+  const shouldOpen = open !== null ? open : !wishlist.classList.contains('open');
+  wishlist.classList.toggle('open', shouldOpen);
+
+  const cart = document.getElementById('floatingCart');
+  if (shouldOpen && cart) cart.classList.remove('open');
+
+  if (overlay) overlay.classList.toggle('active', shouldOpen);
+}
+else {
             this.wishlist.push(productId);
         }
         this.saveToStorage('grindctrl_wishlist', this.wishlist);
@@ -1859,22 +1868,20 @@ class GrindCTRLApp {
         if (overlay) overlay.setAttribute('aria-hidden', anyOpen ? 'false' : 'true');
     }
 
-    toggleCart(force = null) {
-        const cart = document.getElementById('floatingCart');
-        const wishlist = document.getElementById('wishlistPanel');
-        if (!cart) return;
+    toggleCart(open = null) {
+  const cart = document.getElementById('floatingCart');
+  const overlay = document.getElementById('drawerOverlay');
+  if (!cart) return;
 
-        const shouldOpen = force !== null ? !!force : !cart.classList.contains('open');
-        cart.classList.toggle('open', shouldOpen);
-        if (shouldOpen && wishlist) wishlist.classList.remove('open');
+  const shouldOpen = open !== null ? open : !cart.classList.contains('open');
+  cart.classList.toggle('open', shouldOpen);
 
-        
-        const overlay = document.getElementById('drawerOverlay');
-        if (overlay) overlay.classList.toggle('active', shouldOpen);
-        this.updateDrawerOverlay();
-    }
+  const wishlist = document.getElementById('wishlistPanel');
+  if (shouldOpen && wishlist) wishlist.classList.remove('open');
 
-    toggleWishlist(force = null) {
+  if (overlay) overlay.classList.toggle('active', shouldOpen);
+}
+toggleWishlist(force = null) {
         const wishlist = document.getElementById('wishlistPanel');
         const cart = document.getElementById('floatingCart');
         if (!wishlist) return;

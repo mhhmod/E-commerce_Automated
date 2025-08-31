@@ -5526,9 +5526,20 @@ textarea:focus {
   }
 }
 
-.drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal-backdrop); opacity: 0; pointer-events: none; transition: opacity var(--transition-medium); }
-body.drawer-open .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal-backdrop); opacity: 0; pointer-events: none; transition: opacity var(--transition-medium); }
-body.drawer-open{ overflow: hidden; touch-action: none; overscroll-behavior: contain; }
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop);
+  opacity: 0;
+  pointer-events: none; /* <<< block clicks off by default */
+  transition: opacity var(--transition-medium);
+}
+
+.drawer-overlay.active {
+  opacity: 1;
+  pointer-events: auto; /* <<< only block when active */
+}
 
 @media (max-width: 768px){
   .floating-cart, .wishlist-panel{
