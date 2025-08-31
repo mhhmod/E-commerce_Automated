@@ -2959,3 +2959,10 @@ document.addEventListener('keydown', function(e){
     try { window.app && app.closeAllModals && app.closeAllModals(); } catch(_){}
   }
 });
+
+
+window.app = new GrindCTRLApp();
+
+window.scrollToSection = (id) => app.scrollToSection(id);
+window.openLookbook = () => app.openLookbook();
+window.openSizeGuide = () => app.openSizeGuide();
