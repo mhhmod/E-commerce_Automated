@@ -208,6 +208,13 @@ a {
     justify-content: space-between;
     height: 70px;
     position: relative;
+    padding: 0 var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        padding: 0 var(--spacing-sm);
+    }
 }
 
 .logo {
@@ -400,16 +407,17 @@ a {
         top: 70px;
         right: -100%;
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
         height: calc(100vh - 70px);
         background: var(--background-surface);
         flex-direction: column;
         align-items: flex-start;
-        padding: var(--spacing-xl);
+        padding: var(--spacing-lg);
         transition: right var(--transition-medium);
         border-left: 1px solid var(--border-color);
         z-index: var(--z-modal);
         overflow-y: auto;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
 
     .nav.open {
@@ -728,6 +736,7 @@ a {
     min-height: 44px;
     white-space: nowrap;
     line-height: 1;
+    touch-action: manipulation;
 }
 
 .btn-primary {
@@ -767,16 +776,26 @@ a {
 
 @media (max-width: 768px) {
     .btn {
-        padding: var(--spacing-sm) var(--spacing-lg);
-        font-size: 0.8rem;
+        padding: var(--spacing-md) var(--spacing-lg);
+        font-size: 0.875rem;
         width: 100%;
-        max-width: 200px;
+        max-width: 250px;
+        min-height: 48px;
     }
     
     .hero-actions {
         flex-direction: column;
         align-items: center;
-        gap: var(--spacing-sm);
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.8rem;
+        max-width: 100%;
+        min-height: 44px;
     }
 }
 
@@ -1536,6 +1555,29 @@ a {
     .side-panel {
         max-width: 100%;
     }
+    
+    .panel-header {
+        padding: var(--spacing-lg);
+    }
+    
+    .panel-body {
+        padding: var(--spacing-md);
+    }
+    
+    .panel-footer {
+        padding: var(--spacing-lg);
+    }
+    
+    .cart-item,
+    .wishlist-item {
+        padding: var(--spacing-md);
+    }
+    
+    .cart-item-image,
+    .wishlist-item-image {
+        width: 60px;
+        height: 60px;
+    }
 }
 
 /* Cart Items */
@@ -1599,8 +1641,8 @@ a {
 }
 
 .quantity-btn {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background: var(--background-surface);
     border: 1px solid var(--border-color);
@@ -1611,6 +1653,15 @@ a {
     cursor: pointer;
     transition: all var(--transition-fast);
     font-size: 0.875rem;
+    touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+    .quantity-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
 }
 
 .quantity-btn:hover {
@@ -2411,6 +2462,67 @@ a:focus-visible {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-muted);
+}
+
+/* Touch feedback */
+.touching {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+/* Mobile-first responsive improvements */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .filter-tab {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* Enhanced mobile tap targets */
+@media (max-width: 768px) {
+    .cart-icon,
+    .wishlist-icon,
+    .mobile-menu-toggle,
+    .panel-close,
+    .quantity-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .nav-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .filter-tab {
+        min-height: 44px;
+    }
+}
+
+/* Prevent zoom on input focus on iOS */
+@media screen and (max-width: 768px) {
+    input,
+    textarea,
+    select {
+        font-size: 16px;
+    }
 }
 
 /* Dark mode optimizations */
