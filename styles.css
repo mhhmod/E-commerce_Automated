@@ -1060,19 +1060,8 @@ a {
     transform: none !important;
 }
 
-.floating-cart {
-    position: fixed;
-    top: 50%;
-    right: -400px;
-    transform: translateY(-50%);
-    width: 380px;
-    max-height: 80vh;
-    background: var(--background-surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-xl);
-z-index: var(--z-fixed);
-    transition: right var(--transition-medium);
+\1z-index: var(--z-modal);
+transition: right var(--transition-medium);
     overflow: hidden;
     backdrop-filter: blur(10px);
     display: flex;
@@ -5540,21 +5529,3 @@ textarea:focus {
 }
 .drawer-overlay.active{opacity:1;pointer-events:auto;}
 #wishlistPanel,#floatingCart{ z-index: var(--z-modal); }
-
-
-.drawer-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
-    display: none;
-}
-
-.drawer-overlay.active {
-    display: block;
-}
-
-

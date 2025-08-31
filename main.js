@@ -232,7 +232,7 @@ class AppState {
                         <button class="wishlist-btn primary" onclick="app.openQuickView('${product.id}')">
                             Quick View
                         </button>
-                        <button class="wishlist-btn secondary" onclick="app.toggleWishlist('${product.id}')">
+                        <button class="wishlist-btn secondary" onclick="app.toggleWishlistItem(\'\1\')">
                             Remove
                         </button>
                     </div>
@@ -1874,7 +1874,20 @@ class GrindCTRLApp {
         }
     }
 
+    toggleWishlist(force = null) {
+        const wishlist = document.getElementById('wishlistPanel');
+        if (!wishlist) return;
 
+        if (force !== null) {
+            wishlist.classList.toggle('open', force);
+        } else {
+            wishlist.classList.toggle('open');
+        }
+
+        if (wishlist.classList.contains('open')) {
+            this.toggleCart(false);
+        }
+    }
 
     toggleMobileMenu() {
         const nav = document.querySelector('.nav');
@@ -2888,7 +2901,8 @@ window.closeSuccessModal = function() {
     }
 };
 
-
+document.addEventListener('DOMContentLoaded', () => {
+    window.app = new GrindCTRLApp();
 });
 
 if ('serviceWorker' in navigator) {
