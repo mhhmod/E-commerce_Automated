@@ -5526,35 +5526,10 @@ textarea:focus {
   }
 }
 
-.drawer-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: var(--z-modal-backdrop);
-  opacity: 0;
-  pointer-events: none; /* <<< block clicks off by default */
-  transition: opacity var(--transition-medium);
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:var(--z-modal-backdrop);opacity:0;pointer-events:none;transition:opacity var(--transition-medium);}
+.drawer-overlay.active{opacity:1;pointer-events:auto;}
+#floatingCart,#wishlistPanel{will-change:transform;}
+@media (min-width:1025px){
+  #floatingCart:not(.open){right:-400px;}
+  #wishlistPanel:not(.open){right:-400px;}
 }
-
-.drawer-overlay.active {
-  opacity: 1;
-  pointer-events: auto; /* <<< only block when active */
-}
-
-@media (max-width: 768px){
-  .floating-cart, .wishlist-panel{
-    position: fixed !important;
-    top: 0 !important;
-    right: -100% !important;
-    left: auto !important;
-    width: 100% !important;
-    height: 100dvh !important;
-    transform: none !important;
-    border-radius: 0 !important;
-    max-height: none !important;
-    z-index: var(--z-modal) !important;
-  }
-  .floating-cart.open, .wishlist-panel.open{ right: 0 !important; }
-}
-
-.drawer-overlay.active { opacity: 1; pointer-events: auto; }

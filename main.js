@@ -1,3 +1,5 @@
+
+
 'use strict';
 
 class AppState {
@@ -98,28 +100,19 @@ class AppState {
     getCartCount() {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
-
-    toggleWishlist(open = null) {
-  const wishlist = document.getElementById('wishlistPanel');
-  const overlay = document.getElementById('drawerOverlay');
-  if (!wishlist) return;
-
-  const shouldOpen = open !== null ? open : !wishlist.classList.contains('open');
-  wishlist.classList.toggle('open', shouldOpen);
-
-  const cart = document.getElementById('floatingCart');
-  if (shouldOpen && cart) cart.classList.remove('open');
-
-  if (overlay) overlay.classList.toggle('active', shouldOpen);
-}
-else {
+    
+    toggleWishlist(productId) {
+        const index = this.wishlist.indexOf(productId);
+        if (index >= 0) {
+            this.wishlist.splice(index, 1);
+        } else {
             this.wishlist.push(productId);
         }
         this.saveToStorage('grindctrl_wishlist', this.wishlist);
         this.updateWishlistUI();
         return index < 0;
     }
-
+    
     isInWishlist(productId) {
         return this.wishlist.includes(productId);
     }
@@ -236,13 +229,9 @@ else {
                     <div class="wishlist-item-name">${product.name}</div>
                     <div class="wishlist-item-price">${product.price.toFixed(2)} EGP</div>
                     <div class="wishlist-item-actions">
-                        <button class="wishlist-btn primary" onclick="app.openQuickView('${product.id}')">
-                            Quick View
-                        </button>
-                        <button class="wishlist-btn secondary" onclick="app.toggleWishlist('${product.id}')">
-                            Remove
-                        </button>
-                    </div>
+  <button class="wishlist-btn primary" onclick="app.openQuickView('${product.id}')">Quick View</button>
+  <button class="wishlist-btn secondary" onclick="app.toggleWishlistItem('${product.id}')">Remove</button>
+</div>
                 </div>
             </div>
         `).join('');
@@ -543,6 +532,12 @@ class GrindCTRLApp {
                 this.scrollAnimations = new ScrollAnimations();
             }, 100);
 
+            // Ensure drawers and overlay are closed on startup
+            this.toggleCart(false);
+            this.toggleWishlist(false);
+            this.updateDrawerOverlay();
+
+
             } catch (error) {
             console.error('Failed to initialize app:', error);
             this.notifications.error('Failed to load the application. Please refresh the page.');
@@ -582,7 +577,7 @@ class GrindCTRLApp {
                 category: "tshirts",
                 featured: true,
                 images: [
-                    "https:
+                    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
                 ],
                 colors: [
                     { name: "Black", value: "#000000" },
@@ -605,6 +600,7 @@ class GrindCTRLApp {
 
     initializeEventListeners() {
 
+        
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
             cartToggle.addEventListener('click', () => this.toggleCart());
@@ -613,6 +609,8 @@ class GrindCTRLApp {
         if (overlay) {
             overlay.addEventListener('click', () => { this.toggleCart(false); this.toggleWishlist(false); });
         }
+
+    
 
         const wishlistToggle = document.getElementById('wishlistToggle');
         if (wishlistToggle) {
@@ -1865,34 +1863,21 @@ class GrindCTRLApp {
         const wishlist = document.getElementById('wishlistPanel');
         const anyOpen = (cart && cart.classList.contains('open')) || (wishlist && wishlist.classList.contains('open'));
         document.body.classList.toggle('drawer-open', !!anyOpen);
-        if (overlay) overlay.setAttribute('aria-hidden', anyOpen ? 'false' : 'true');
+        if (overlay) {
+            overlay.setAttribute('aria-hidden', anyOpen ? 'false' : 'true');
+            overlay.classList.toggle('active', !!anyOpen);
+        }
     }
 
-    toggleCart(open = null) {
-  const cart = document.getElementById('floatingCart');
-  const overlay = document.getElementById('drawerOverlay');
-  if (!cart) return;
-
-  const shouldOpen = open !== null ? open : !cart.classList.contains('open');
-  cart.classList.toggle('open', shouldOpen);
-
-  const wishlist = document.getElementById('wishlistPanel');
-  if (shouldOpen && wishlist) wishlist.classList.remove('open');
-
-  if (overlay) overlay.classList.toggle('active', shouldOpen);
-}
-toggleWishlist(force = null) {
-        const wishlist = document.getElementById('wishlistPanel');
+    toggleCart(force = null) {
         const cart = document.getElementById('floatingCart');
-        if (!wishlist) return;
+        const wishlist = document.getElementById('wishlistPanel');
+        if (!cart) return;
 
-        const shouldOpen = force !== null ? !!force : !wishlist.classList.contains('open');
-        wishlist.classList.toggle('open', shouldOpen);
-        if (shouldOpen && cart) cart.classList.remove('open');
+        const shouldOpen = force !== null ? !!force : !cart.classList.contains('open');
+        cart.classList.toggle('open', shouldOpen);
+        if (shouldOpen && wishlist) wishlist.classList.remove('open');
 
-        
-        const overlay = document.getElementById('drawerOverlay');
-        if (overlay) overlay.classList.toggle('active', shouldOpen);
         this.updateDrawerOverlay();
     }
 
@@ -1905,9 +1890,6 @@ toggleWishlist(force = null) {
         wishlist.classList.toggle('open', shouldOpen);
         if (shouldOpen && cart) cart.classList.remove('open');
 
-        
-        const overlay = document.getElementById('drawerOverlay');
-        if (overlay) overlay.classList.toggle('active', shouldOpen);
         this.updateDrawerOverlay();
     }
 
