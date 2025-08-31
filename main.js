@@ -1868,6 +1868,9 @@ class GrindCTRLApp {
         cart.classList.toggle('open', shouldOpen);
         if (shouldOpen && wishlist) wishlist.classList.remove('open');
 
+        
+        const overlay = document.getElementById('drawerOverlay');
+        if (overlay) overlay.classList.toggle('active', shouldOpen);
         this.updateDrawerOverlay();
     }
 
@@ -1880,6 +1883,9 @@ class GrindCTRLApp {
         wishlist.classList.toggle('open', shouldOpen);
         if (shouldOpen && cart) cart.classList.remove('open');
 
+        
+        const overlay = document.getElementById('drawerOverlay');
+        if (overlay) overlay.classList.toggle('active', shouldOpen);
         this.updateDrawerOverlay();
     }
 
@@ -1892,6 +1898,9 @@ class GrindCTRLApp {
         wishlist.classList.toggle('open', shouldOpen);
         if (shouldOpen && cart) cart.classList.remove('open');
 
+        
+        const overlay = document.getElementById('drawerOverlay');
+        if (overlay) overlay.classList.toggle('active', shouldOpen);
         this.updateDrawerOverlay();
     }
 

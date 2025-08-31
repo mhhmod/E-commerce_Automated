@@ -5526,16 +5526,8 @@ textarea:focus {
   }
 }
 
-.drawer-overlay{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s ease;
-  z-index: var(--z-modal-backdrop);
-}
-body.drawer-open .drawer-overlay{ opacity: 1; pointer-events: auto; }
+.drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal-backdrop); opacity: 0; pointer-events: none; transition: opacity var(--transition-medium); }
+body.drawer-open .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal-backdrop); opacity: 0; pointer-events: none; transition: opacity var(--transition-medium); }
 body.drawer-open{ overflow: hidden; touch-action: none; overscroll-behavior: contain; }
 
 @media (max-width: 768px){
@@ -5553,3 +5545,5 @@ body.drawer-open{ overflow: hidden; touch-action: none; overscroll-behavior: con
   }
   .floating-cart.open, .wishlist-panel.open{ right: 0 !important; }
 }
+
+.drawer-overlay.active { opacity: 1; pointer-events: auto; }
