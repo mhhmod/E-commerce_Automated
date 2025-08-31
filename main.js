@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 class AppState {
@@ -100,7 +98,7 @@ class AppState {
     getCartCount() {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
-    
+
     toggleWishlist(productId) {
         const index = this.wishlist.indexOf(productId);
         if (index >= 0) {
@@ -112,7 +110,7 @@ class AppState {
         this.updateWishlistUI();
         return index < 0;
     }
-    
+
     isInWishlist(productId) {
         return this.wishlist.includes(productId);
     }
@@ -575,7 +573,7 @@ class GrindCTRLApp {
                 category: "tshirts",
                 featured: true,
                 images: [
-                    "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800"
+                    "https:
                 ],
                 colors: [
                     { name: "Black", value: "#000000" },
@@ -598,7 +596,6 @@ class GrindCTRLApp {
 
     initializeEventListeners() {
 
-        
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
             cartToggle.addEventListener('click', () => this.toggleCart());
@@ -607,8 +604,6 @@ class GrindCTRLApp {
         if (overlay) {
             overlay.addEventListener('click', () => { this.toggleCart(false); this.toggleWishlist(false); });
         }
-
-    
 
         const wishlistToggle = document.getElementById('wishlistToggle');
         if (wishlistToggle) {
