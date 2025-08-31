@@ -100,7 +100,7 @@ class AppState {
     getCartCount() {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
-    
+
     toggleWishlist(productId) {
         const index = this.wishlist.indexOf(productId);
         if (index >= 0) {
@@ -112,7 +112,7 @@ class AppState {
         this.updateWishlistUI();
         return index < 0;
     }
-    
+
     isInWishlist(productId) {
         return this.wishlist.includes(productId);
     }
@@ -229,9 +229,13 @@ class AppState {
                     <div class="wishlist-item-name">${product.name}</div>
                     <div class="wishlist-item-price">${product.price.toFixed(2)} EGP</div>
                     <div class="wishlist-item-actions">
-  <button class="wishlist-btn primary" onclick="app.openQuickView('${product.id}')">Quick View</button>
-  <button class="wishlist-btn secondary" onclick="app.toggleWishlistItem('${product.id}')">Remove</button>
-</div>
+                        <button class="wishlist-btn primary" onclick="app.openQuickView('${product.id}')">
+                            Quick View
+                        </button>
+                        <button class="wishlist-btn secondary" onclick="app.toggleWishlist('${product.id}')">
+                            Remove
+                        </button>
+                    </div>
                 </div>
             </div>
         `).join('');
@@ -532,12 +536,6 @@ class GrindCTRLApp {
                 this.scrollAnimations = new ScrollAnimations();
             }, 100);
 
-            // Ensure drawers and overlay are closed on startup
-            this.toggleCart(false);
-            this.toggleWishlist(false);
-            this.updateDrawerOverlay();
-
-
             } catch (error) {
             console.error('Failed to initialize app:', error);
             this.notifications.error('Failed to load the application. Please refresh the page.');
@@ -600,17 +598,10 @@ class GrindCTRLApp {
 
     initializeEventListeners() {
 
-        
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
             cartToggle.addEventListener('click', () => this.toggleCart());
         }
-        const overlay = document.getElementById('drawerOverlay');
-        if (overlay) {
-            overlay.addEventListener('click', () => { this.toggleCart(false); this.toggleWishlist(false); });
-        }
-
-    
 
         const wishlistToggle = document.getElementById('wishlistToggle');
         if (wishlistToggle) {
@@ -658,7 +649,18 @@ class GrindCTRLApp {
         window.addEventListener('scroll', Utils.throttle(() => {
             this.handleScroll();
         }, 16));
-    }
+    
+  // Delegated closes for drawers and overlay
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#cartClose, .cart-close')) this.toggleCart(false);
+    if (e.target.closest('#wishlistClose, .wishlist-close')) this.toggleWishlist(false);
+    if (e.target.closest('#drawerOverlay')) { this.toggleCart(false); this.toggleWishlist(false); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { this.toggleCart(false); this.toggleWishlist(false); }
+  });
+
+}
 
     initializeNavigation() {
         const navLinks = document.querySelectorAll('.nav-link');
@@ -1857,41 +1859,22 @@ class GrindCTRLApp {
         document.body.style.overflow = '';
     }
 
-    updateDrawerOverlay() {
-        const overlay = document.getElementById('drawerOverlay');
+    toggleCart(force = null) {
         const cart = document.getElementById('floatingCart');
-        const wishlist = document.getElementById('wishlistPanel');
-        const anyOpen = (cart && cart.classList.contains('open')) || (wishlist && wishlist.classList.contains('open'));
-        document.body.classList.toggle('drawer-open', !!anyOpen);
-        if (overlay) {
-            overlay.setAttribute('aria-hidden', anyOpen ? 'false' : 'true');
-            overlay.classList.toggle('active', !!anyOpen);
+        if (!cart) return;
+
+        if (force !== null) {
+            cart.classList.toggle('open', force);
+        } else {
+            cart.classList.toggle('open');
+        }
+
+        if (cart.classList.contains('open')) {
+            this.toggleWishlist(false);
         }
     }
 
-    toggleCart(force = null) {
-        const cart = document.getElementById('floatingCart');
-        const wishlist = document.getElementById('wishlistPanel');
-        if (!cart) return;
 
-        const shouldOpen = force !== null ? !!force : !cart.classList.contains('open');
-        cart.classList.toggle('open', shouldOpen);
-        if (shouldOpen && wishlist) wishlist.classList.remove('open');
-
-        this.updateDrawerOverlay();
-    }
-
-    toggleWishlist(force = null) {
-        const wishlist = document.getElementById('wishlistPanel');
-        const cart = document.getElementById('floatingCart');
-        if (!wishlist) return;
-
-        const shouldOpen = force !== null ? !!force : !wishlist.classList.contains('open');
-        wishlist.classList.toggle('open', shouldOpen);
-        if (shouldOpen && cart) cart.classList.remove('open');
-
-        this.updateDrawerOverlay();
-    }
 
     toggleMobileMenu() {
         const nav = document.querySelector('.nav');
@@ -2905,8 +2888,7 @@ window.closeSuccessModal = function() {
     }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.app = new GrindCTRLApp();
+
 });
 
 if ('serviceWorker' in navigator) {
