@@ -100,15 +100,19 @@ class AppState {
     getCartCount() {
         return this.cart.reduce((count, item) => count + item.quantity, 0);
     }
-
-    else {
+    
+    toggleWishlist(productId) {
+        const index = this.wishlist.indexOf(productId);
+        if (index >= 0) {
+            this.wishlist.splice(index, 1);
+        } else {
             this.wishlist.push(productId);
         }
         this.saveToStorage('grindctrl_wishlist', this.wishlist);
         this.updateWishlistUI();
         return index < 0;
     }
-
+    
     isInWishlist(productId) {
         return this.wishlist.includes(productId);
     }
@@ -594,15 +598,17 @@ class GrindCTRLApp {
 
     initializeEventListeners() {
 
+        
         const cartToggle = document.getElementById('cartToggle');
         if (cartToggle) {
             cartToggle.addEventListener('click', () => this.toggleCart());
-
+        }
         const overlay = document.getElementById('drawerOverlay');
         if (overlay) {
             overlay.addEventListener('click', () => { this.toggleCart(false); this.toggleWishlist(false); });
         }
-        }
+
+    
 
         const wishlistToggle = document.getElementById('wishlistToggle');
         if (wishlistToggle) {
@@ -1845,7 +1851,9 @@ class GrindCTRLApp {
         const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
             modal.classList.remove('open');
-        }
+        });
+        document.body.style.overflow = '';
+    }
 
     updateDrawerOverlay() {
         const overlay = document.getElementById('drawerOverlay');
@@ -1879,32 +1887,17 @@ class GrindCTRLApp {
 
         this.updateDrawerOverlay();
     }
-);
-        document.body.style.overflow = '';
-    }
-
-    else {
-            cart.classList.toggle('open');
-        }
-
-        if (cart.classList.contains('open')) {
-            this.toggleWishlist(false);
-        }
-    }
 
     toggleWishlist(force = null) {
         const wishlist = document.getElementById('wishlistPanel');
+        const cart = document.getElementById('floatingCart');
         if (!wishlist) return;
 
-        if (force !== null) {
-            wishlist.classList.toggle('open', force);
-        } else {
-            wishlist.classList.toggle('open');
-        }
+        const shouldOpen = force !== null ? !!force : !wishlist.classList.contains('open');
+        wishlist.classList.toggle('open', shouldOpen);
+        if (shouldOpen && cart) cart.classList.remove('open');
 
-        if (wishlist.classList.contains('open')) {
-            this.toggleCart(false);
-        }
+        this.updateDrawerOverlay();
     }
 
     toggleMobileMenu() {
