@@ -86,6 +86,8 @@
                             <a href="#" onclick="app.openExchangeModal(); return false;">Exchange Order</a>
                         </div>
                     </div>
+                </nav>
+                <div class="header-actions">
                     <div class="cart-icon" id="cartToggle">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count" id="cartCount">0</span>
@@ -97,10 +99,13 @@
                     <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-controls="site-menu" aria-expanded="false" aria-label="Toggle mobile menu">
                         <i class="fas fa-bars"></i>
                     </button>
-                </nav>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <main class="main">
 
@@ -274,214 +279,249 @@
                     <h3>Contact Us</h3>
                     <p>Have a question or feedback? Send us a message.</p>
                     <form class="contact-form" id="contactForm">
-                        <input type="text" name="name" placeholder="Your name" required>
-                        <input type="email" name="email" placeholder="Your email" required>
-                        <textarea name="message" placeholder="Your message" rows="3" required></textarea>
+                        <input type="text" placeholder="Your name" required>
+                        <input type="email" placeholder="Your email" required>
+                        <textarea placeholder="Your message" rows="3" required></textarea>
                         <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 GrindCTRL. All rights reserved.</p>
+                <p>&copy; 2024 GrindCTRL. All rights reserved.</p>
                 <div class="footer-links">
                     <a href="#">Privacy Policy</a>
                     <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <div class="floating-cart" id="floatingCart">
-        <div class="cart-header">
-            <h3>Shopping Cart</h3>
-            <button class="cart-close" id="cartClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="cart-items" id="cartItems">
-
-        </div>
-        <div class="cart-summary" id="cartSummary">
-
-        </div>
-    </div>
-
-    <div class="wishlist-panel" id="wishlistPanel">
-        <div class="wishlist-header">
-            <h3>Wishlist</h3>
-            <button class="wishlist-close" id="wishlistClose">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <div class="wishlist-items" id="wishlistItems">
-
+    <!-- Side Cart Panel -->
+    <div class="side-panel" id="cartPanel">
+        <div class="panel-overlay" onclick="app.closeCartPanel()"></div>
+        <div class="panel-content">
+            <div class="panel-header">
+                <h3>Shopping Cart</h3>
+                <button class="panel-close" onclick="app.closeCartPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="panel-body">
+                <div id="cartItems" class="cart-items">
+                    <!-- Cart items will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div id="cartSummary" class="cart-summary">
+                    <!-- Cart summary will be populated by JavaScript -->
+                </div>
+            </div>
         </div>
     </div>
 
-    
+    <!-- Side Wishlist Panel -->
+    <div class="side-panel" id="wishlistPanel">
+        <div class="panel-overlay" onclick="app.closeWishlistPanel()"></div>
+        <div class="panel-content">
+            <div class="panel-header">
+                <h3>Wishlist</h3>
+                <button class="panel-close" onclick="app.closeWishlistPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="panel-body">
+                <div id="wishlistItems" class="wishlist-items">
+                    <!-- Wishlist items will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- unified overlay for cart + wishlist -->
-    <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
-
+    <!-- Quick View Modal -->
     <div class="modal" id="quickViewModal">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="app.closeQuickView()"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Quick View</h3>
-                <button class="modal-close" id="quickViewClose">
+                <button class="modal-close" onclick="app.closeQuickView()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body" id="quickViewBody">
-
+            <div class="modal-body" id="quickViewContent">
+                <!-- Quick view content will be populated by JavaScript -->
             </div>
         </div>
     </div>
 
-    <div class="modal" id="checkoutModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content checkout-modal">
+    <!-- Checkout Modal -->
+    <div class="modal checkout-modal" id="checkoutModal">
+        <div class="modal-overlay" onclick="app.closeCheckout()"></div>
+        <div class="modal-content">
             <div class="modal-header">
                 <h3>Checkout</h3>
-                <button class="modal-close" id="checkoutClose">
+                <button class="modal-close" onclick="app.closeCheckout()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="checkout-progress">
-                <div class="progress-step active" data-step="1">
-                    <span class="step-number">1</span>
-                    <span class="step-label">Shipping</span>
+            <div class="modal-body">
+                <div class="checkout-steps">
+                    <div class="step" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Information</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Shipping</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Payment</span>
+                    </div>
                 </div>
-                <div class="progress-step" data-step="2">
-                    <span class="step-number">2</span>
-                    <span class="step-label">Payment</span>
+                <div id="checkoutContent" class="checkout-content">
+                    <!-- Checkout content will be populated by JavaScript -->
                 </div>
-                <div class="progress-step" data-step="3">
-                    <span class="step-number">3</span>
-                    <span class="step-label">Review</span>
-                </div>
-            </div>
-            <div class="modal-body" id="checkoutBody">
-
             </div>
         </div>
     </div>
 
+    <!-- Size Guide Modal -->
     <div class="modal" id="sizeGuideModal">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="app.closeSizeGuide()"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Size Guide</h3>
-                <button class="modal-close" id="sizeGuideClose">
+                <button class="modal-close" onclick="app.closeSizeGuide()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="modal-body" id="sizeGuideBody">
-
-            </div>
-        </div>
-    </div>
-
-    <div class="notification-toast" id="notificationToast">
-        <div class="toast-content">
-            <i class="toast-icon"></i>
-            <span class="toast-message"></span>
-            <button class="toast-close">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
-
-    <div class="modal" id="successModal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content success-modal">
             <div class="modal-body">
-                <div class="success-content">
-                    <i class="fas fa-check-circle success-icon"></i>
-                    <h3>Order Confirmed!</h3>
-                    <p id="successMessage">Thank you for your order. You will receive a confirmation email shortly.</p>
-                    <div class="order-details" id="orderDetails">
-
+                <div class="size-guide-content">
+                    <div class="size-guide-tabs">
+                        <button class="size-tab active" data-category="tshirts">T-Shirts</button>
+                        <button class="size-tab" data-category="hoodies">Hoodies</button>
+                        <button class="size-tab" data-category="footwear">Footwear</button>
                     </div>
-                    <button class="btn btn-primary" onclick="closeSuccessModal()">
-                        Continue Shopping
-                    </button>
-
-                    <div class="order-actions">
-                        <button class="btn btn-secondary" onclick="app.handleExchangeOrder()">
-                            Exchange Order
-                        </button>
-                        <button class="btn btn-secondary" onclick="app.handleReturnOrder()" style="margin-left: var(--spacing-sm);">
-                            Return Order
-                        </button>
+                    <div class="size-tables">
+                        <div class="size-table" data-category="tshirts">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Chest (cm)</th>
+                                        <th>Length (cm)</th>
+                                        <th>Shoulder (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>XS</td><td>88-92</td><td>65</td><td>42</td></tr>
+                                    <tr><td>S</td><td>92-96</td><td>67</td><td>44</td></tr>
+                                    <tr><td>M</td><td>96-100</td><td>69</td><td>46</td></tr>
+                                    <tr><td>L</td><td>100-104</td><td>71</td><td>48</td></tr>
+                                    <tr><td>XL</td><td>104-108</td><td>73</td><td>50</td></tr>
+                                    <tr><td>XXL</td><td>108-112</td><td>75</td><td>52</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="size-table" data-category="hoodies" style="display: none;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Chest (cm)</th>
+                                        <th>Length (cm)</th>
+                                        <th>Sleeve (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>S</td><td>102</td><td>66</td><td>64</td></tr>
+                                    <tr><td>M</td><td>106</td><td>68</td><td>66</td></tr>
+                                    <tr><td>L</td><td>110</td><td>70</td><td>68</td></tr>
+                                    <tr><td>XL</td><td>114</td><td>72</td><td>70</td></tr>
+                                    <tr><td>XXL</td><td>118</td><td>74</td><td>72</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="size-table" data-category="footwear" style="display: none;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>EU</th>
+                                        <th>US</th>
+                                        <th>UK</th>
+                                        <th>Length (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>40</td><td>7</td><td>6.5</td><td>25.4</td></tr>
+                                    <tr><td>41</td><td>8</td><td>7.5</td><td>26.2</td></tr>
+                                    <tr><td>42</td><td>9</td><td>8.5</td><td>27.0</td></tr>
+                                    <tr><td>43</td><td>10</td><td>9.5</td><td>27.8</td></tr>
+                                    <tr><td>44</td><td>11</td><td>10.5</td><td>28.6</td></tr>
+                                    <tr><td>45</td><td>12</td><td>11.5</td><td>29.4</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal" id="returnModal">
+    <!-- Order Success Modal -->
+    <div class="modal" id="successModal">
         <div class="modal-overlay"></div>
+        <div class="modal-content success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Order Placed Successfully!</h3>
+            <div id="successDetails" class="success-details">
+                <!-- Success details will be populated by JavaScript -->
+            </div>
+            <div class="success-actions">
+                <button class="btn btn-primary" onclick="app.closeSuccess()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return/Exchange Modals -->
+    <div class="modal" id="returnModal">
+        <div class="modal-overlay" onclick="app.closeReturnModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Return Order</h3>
-                <button class="modal-close" onclick="app.closeModal('return')">
+                <button class="modal-close" onclick="app.closeReturnModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="returnForm" class="checkout-form">
-                    <div class="form-section">
-                        <h4>Return Request Details</h4>
-
-                        <div class="form-group">
-                            <label class="form-label">Phone Number *</label>
-                            <input type="tel" name="phone" class="form-input" placeholder="Your phone number" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Email Address *</label>
-                            <input type="email" name="email" class="form-input" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">First Name *</label>
-                                <input type="text" name="firstName" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Last Name *</label>
-                                <input type="text" name="lastName" class="form-input" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Shipping Address *</label>
-                            <input type="text" name="address" class="form-input" placeholder="Street address" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">City *</label>
-                                <input type="text" name="city" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Postal Code *</label>
-                                <input type="text" name="postalCode" class="form-input" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Reason for Return *</label>
-                            <textarea name="returnReason" class="form-input" rows="3" maxlength="500" placeholder="Please provide detailed reason for return" required></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Order ID (if known)</label>
-                            <input type="text" name="orderId" class="form-input" placeholder="Optional - leave blank if unknown">
-                        </div>
+                <form id="returnForm" class="return-form">
+                    <div class="form-group">
+                        <label for="returnOrderId">Order ID</label>
+                        <input type="text" id="returnOrderId" name="orderId" placeholder="Enter your order ID" required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="returnEmail">Email</label>
+                        <input type="email" id="returnEmail" name="email" placeholder="Email used for the order" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="returnReason">Reason for Return</label>
+                        <select id="returnReason" name="reason" required>
+                            <option value="">Select a reason</option>
+                            <option value="damaged">Item arrived damaged</option>
+                            <option value="wrong-size">Wrong size</option>
+                            <option value="wrong-item">Wrong item</option>
+                            <option value="not-as-described">Not as described</option>
+                            <option value="changed-mind">Changed my mind</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="returnDescription">Description</label>
+                        <textarea id="returnDescription" name="description" placeholder="Please provide more details" rows="4"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary">Submit Return Request</button>
                 </form>
             </div>
@@ -489,119 +529,91 @@
     </div>
 
     <div class="modal" id="exchangeModal">
-        <div class="modal-overlay"></div>
+        <div class="modal-overlay" onclick="app.closeExchangeModal()"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Exchange Order</h3>
-                <button class="modal-close" onclick="app.closeModal('exchange')">
+                <button class="modal-close" onclick="app.closeExchangeModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="exchangeForm" class="checkout-form">
-
-                    <div class="form-section">
-                        <h4>Step 1: Your Details</h4>
-
-                        <div class="form-group">
-                            <label class="form-label">Phone Number *</label>
-                            <input type="tel" name="phone" class="form-input" placeholder="Your phone number" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Email Address *</label>
-                            <input type="email" name="email" class="form-input" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">First Name *</label>
-                                <input type="text" name="firstName" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Last Name *</label>
-                                <input type="text" name="lastName" class="form-input" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Shipping Address *</label>
-                            <input type="text" name="address" class="form-input" placeholder="Street address" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label class="form-label">City *</label>
-                                <input type="text" name="city" class="form-input" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Postal Code *</label>
-                                <input type="text" name="postalCode" class="form-input" required>
-                            </div>
-                        </div>
+                <form id="exchangeForm" class="exchange-form">
+                    <div class="form-group">
+                        <label for="exchangeOrderId">Order ID</label>
+                        <input type="text" id="exchangeOrderId" name="orderId" placeholder="Enter your order ID" required>
                     </div>
-
-                    <div class="form-section" id="orderSelectionSection" style="display: none;">
-                        <h4>Step 2: Select Order to Exchange From</h4>
-                        <div class="info-box">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Select which order contains the item you want to exchange</span>
-                        </div>
-                        <div id="exchangeOrderList" class="order-list"></div>
+                    <div class="form-group">
+                        <label for="exchangeEmail">Email</label>
+                        <input type="email" id="exchangeEmail" name="email" placeholder="Email used for the order" required>
                     </div>
-
-                    <div class="form-section" id="itemSelectionSection" style="display: none;">
-                        <h4>Step 3: Choose New Item</h4>
-                        <div class="info-box">
-                            <i class="fas fa-info-circle"></i>
-                            <span>Choose the new item you'd like to exchange to</span>
-                        </div>
-
-                        <div id="exchangeProductGrid">
-
-                        </div>
-
-                        <div class="product-preview" id="exchangeProductPreview" style="display: none;">
-                            <h5>New Item Preview</h5>
-                            <div class="preview-images">
-                                <img id="exchangePreviewMainImage" src="" alt="" class="preview-main-image">
-                                <div class="preview-thumbnails" id="exchangePreviewThumbnails"></div>
-                            </div>
-                            <div class="preview-details" id="exchangePreviewDetails"></div>
-                        </div>
-
-                        <div class="exchange-summary" id="exchangeSummary" style="display: none;">
-                            <h5>Exchange Summary</h5>
-                            <div class="summary-content" id="summaryContent"></div>
-                        </div>
-
-                        <div class="price-delta" id="priceDelta" style="display: none;">
-                            <div class="delta-display">
-                                <span class="delta-label">Price Difference:</span>
-                                <span class="delta-amount" id="deltaAmount">EGP 0.00</span>
-                            </div>
-                            <div class="delta-explanation" id="deltaExplanation"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Exchange Note</label>
-                            <textarea name="note" class="form-input" rows="3" maxlength="500" placeholder="Add any additional comments about your exchange request"></textarea>
-                        </div>
+                    <div class="form-group">
+                        <label for="exchangeReason">Reason for Exchange</label>
+                        <select id="exchangeReason" name="reason" required>
+                            <option value="">Select a reason</option>
+                            <option value="wrong-size">Wrong size</option>
+                            <option value="wrong-color">Wrong color</option>
+                            <option value="defective">Defective item</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-
-                    <button type="submit" id="exchangeSubmit" class="btn btn-primary" style="display: none;">Submit Exchange Request</button>
+                    <div class="form-group">
+                        <label for="exchangeNewSize">New Size (if applicable)</label>
+                        <select id="exchangeNewSize" name="newSize">
+                            <option value="">Select size</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exchangeDescription">Description</label>
+                        <textarea id="exchangeDescription" name="description" placeholder="Please provide more details" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Exchange Request</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Notification Container -->
+    <div id="notificationToast"></div>
 
+    <!-- Scripts -->
     <script src="config.js"></script>
+    <script src="main.js"></script>
 
-    <script src="main.js?v=2025-08-24d&v=v10_1756338298" defer></script>
-    
+    <script>
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            window.app = new GrindCTRLApp();
+        });
+
+        // Global functions
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const headerHeight = 70;
+                const targetPosition = section.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function openLookbook() {
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        }
+
+        function openSizeGuide() {
+            if (window.app) {
+                window.app.openSizeGuide();
+            }
+        }
+    </script>
 </body>
 </html>
