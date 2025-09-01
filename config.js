@@ -2,11 +2,11 @@
 
 window.CONFIG = {
 
-    WEBHOOK_URL: 'NEWORDER_URL',
+    WEBHOOK_URL: 'http://localhost:5678/webhook/test2git',
 
-    RETURN_WEBHOOK_URL: 'RETURN_URL',
+    RETURN_WEBHOOK_URL: 'http://localhost:5678/webhook/returnxx',
 
-    EXCHANGE_WEBHOOK_URL: 'EXCHANGE_URL',
+    EXCHANGE_WEBHOOK_URL: 'http://localhost:5678/webhook-test/exxx',
 
     API_ENDPOINTS: {
       NEWSLETTER: '/api/newsletter',
